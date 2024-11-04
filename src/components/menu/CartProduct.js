@@ -1,3 +1,4 @@
+'use client';
 import {cartProductPrice} from "@/components/AppContext";
 import Trash from "@/components/icons/Trash";
 import Image from "next/image";

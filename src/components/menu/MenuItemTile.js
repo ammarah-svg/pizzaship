@@ -1,3 +1,4 @@
+'use client';
 import AddToCartButton from "@/components/menu/AddToCartButton";
 
 export default function MenuItemTile({onAddToCart, ...item}) {

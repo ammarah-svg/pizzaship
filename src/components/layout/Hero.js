@@ -1,3 +1,4 @@
+'use client';
 import Right from "@/components/icons/Right";
 import Image from "next/image";
 
@@ -17,7 +18,7 @@ export default function Hero() {
           Pizza is the missing piece that makes every day complete, a simple yet delicious joy in life
         </p>
         <div className="flex gap-4 text-sm">
-          <button className="flex justify-center bg-primary uppercase flex items-center gap-2 text-white px-4 py-2 rounded-full">
+          <button className="flex justify-center bg-primary uppercase items-center gap-2 text-white px-4 py-2 rounded-full">
             Order now
             <Right />
           </button>

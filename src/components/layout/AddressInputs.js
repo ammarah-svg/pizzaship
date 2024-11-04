@@ -1,3 +1,4 @@
+'use client';
 export default function AddressInputs({addressProps,setAddressProp,disabled=false}) {
   const {phone, streetAddress, postalCode, city, country} = addressProps;
   return (
