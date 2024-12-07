@@ -9,20 +9,37 @@ export default function MenuItemPriceProps({name,addLabel,props,setProps}) {
 
   const [isOpen, setIsOpen] = useState(false);
 
+
+
   function addProp() {
     setProps((oldProps) => {
       return [...oldProps, { name: "", price: 0 }];
     });
   }
 
+
+
   function editProp(ev, index, prop) {
     const newValue = ev.target.value;
+
+    // Optional: Validate input
+    if (prop === "name" && newValue.trim() === "") {
+        return; // Do not update if the name is empty
+    }
+
+    if (prop === "price" && isNaN(newValue)) {
+        return; // Do not update if the price is not a number
+    }
+
     setProps((prevSizes) => {
-      const newSizes = [...prevSizes];
-      newSizes[index][prop] = newValue;
-      return newSizes;
+        const newSizes = [...prevSizes];
+        newSizes[index][prop] = newValue;
+        return newSizes;
     });
-  }
+}
+
+
+  
 function removeProp(indexToRemove){
   setProps(prev => prev.filter((v,index) => index !== indexToRemove));
 }
@@ -74,7 +91,7 @@ function removeProp(indexToRemove){
                   <div>
                     <button
                       type="button"
-                      onClick={() => removeProp(index)}
+                      onClick={() => removeProp}
                       className="bg-white mb-2 px-3"
                     >
                       <Trash />

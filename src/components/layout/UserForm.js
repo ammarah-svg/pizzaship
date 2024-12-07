@@ -2,18 +2,31 @@
 import AddressInputs from "@/components/layout/AddressInputs";
 import EditableImage from "@/components/layout/EditableImage";
 import { useProfile } from "@/components/UseProfile";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function UserForm({ user, onSave }) {
-  const [userName, setUserName] = useState(user?.name || '');
-  const [image, setImage] = useState(user?.image || '');
-  const [phone, setPhone] = useState(user?.phone || '');
-  const [streetAddress, setStreetAddress] = useState(user?.streetAddress || '');
-  const [postalCode, setPostalCode] = useState(user?.postalCode || '');
-  const [city, setCity] = useState(user?.city || '');
-  const [country, setCountry] = useState(user?.country || '');
-  const [admin, setAdmin] = useState(user?.admin || false);
+  const [userName, setUserName] = useState('');
+  const [image, setImage] = useState('');
+  const [phone, setPhone] = useState('');
+  const [streetAddress, setStreetAddress] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
+  const [admin, setAdmin] = useState(false);
   const { data: loggedInUserData } = useProfile();
+
+  useEffect(() => {
+    if (user) {
+      setUserName(user.name || '');
+      setImage(user.image || '');
+      setPhone(user.phone || '');
+      setStreetAddress(user.streetAddress || '');
+      setPostalCode(user.postalCode || '');
+      setCity(user.city || '');
+      setCountry(user.country || '');
+      setAdmin(user.admin || false);
+    }
+  }, [user]);
 
   function handleAddressChange(propName, value) {
     if (propName === 'phone') setPhone(value);
@@ -47,11 +60,15 @@ export default function UserForm({ user, onSave }) {
     setCountry('');
   }
 
+  if (!user || !loggedInUserData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="md:flex gap-4">
       <div>
         <div className="p-2 rounded-lg relative max-w-[120px]">
-          <EditableImage  link={image} setLink={setImage} />
+          <EditableImage link={image} setLink={setImage} />
         </div>
       </div>
       <form className="grow" onSubmit={handleFormSubmit}>
@@ -67,7 +84,7 @@ export default function UserForm({ user, onSave }) {
         <input
           type="email"
           disabled={true}
-          value={user.email}
+          value={user.email || ''}
           placeholder="email"
         />
         <AddressInputs

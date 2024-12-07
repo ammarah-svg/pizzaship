@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import toast from "react-hot-toast";
-
+import { useState , useEffect} from "react";
 export default function EditableImage({ link, setLink }) {
   async function handleFileChange(ev) {
     const files = ev.target.files;
@@ -35,10 +35,17 @@ export default function EditableImage({ link, setLink }) {
     }
   }
 
+
   return (
     <>
       {link ? (
-        <Image className="rounded-lg w-full h-full mb-1" src={link} width={250} height={250} alt="avatar" />
+        <Image
+        className="rounded-lg w-full h-full mb-1"
+        src={link}
+        width={250}
+        height={250}
+        alt="avatar"
+      />
       ) : (
         <div className="text-center bg-gray-200 p-4 text-gray-500 rounded-lg mb-1">
           No image

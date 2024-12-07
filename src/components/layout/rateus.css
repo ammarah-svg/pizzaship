@@ -1,0 +1,134 @@
+
+  @keyframes move {
+    from {
+      transform: translateY(5px);
+    }
+    to {
+      transform: translateX( -20px);
+    }
+  }
+  .progress-para,.service-para ,.volump-text h3{
+    color: var(--myprimary);
+  }
+  .volump-progress{
+    background: var(--myprimary);
+  }
+  .card-content i,.card-content a,.portfolio h2{
+  color: var(--myprimary);
+  font-weight: 700;
+  }
+  .card-content{
+    transition: all 0.7s;
+  
+  }
+  .card-content:hover{
+  transform: translateY(-10px);
+  }
+  .cta {
+    margin-top: 2rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(40, 58, 90, 0.4)), url('/card1.jpg') fixed center center;
+    background-size: cover; /* Ensures the image fully covers the element without repeating */
+    background-position: center; /* Ensures the image is centered */
+    width: 100%;
+    height: 300px;
+    background-attachment: fixed;
+  }
+  
+  
+  .cta-btn:hover{
+    border: none;
+  }
+  .portfolio h2{
+    color: var(--myprimary);
+    
+  }
+  
+  .img-card img{
+    transition: all 0.4s;
+  }
+  .img-card img:hover{
+    scale: 1.05;
+  }
+  .img-parent{
+  overflow: hidden;
+  position: relative;
+  
+  }
+  
+   .overlay{
+    position: absolute;
+    background: rgba(55, 81, 126, 0.6);
+  position: absolute;
+  bottom: 14px;
+  opacity: 0;
+  transition: all 0.5s;
+  } 
+  .img-card :hover .overlay{
+    opacity: 1;
+  }
+  
+  .img-card:hover .img-card img{
+    scale: 1.3;
+  }
+  
+  .team-c-img{
+  max-width: 145px;
+  height: 145px;
+    border-radius: 50%;
+  
+  }
+  .team-card {
+    font-family: josh,sans-serif !important;
+    border-radius: 5px;
+  }
+  .team-card h3,.team-icons i{
+    color: var(--myprimary)
+    ;
+    font-weight: bold;
+  }
+  .card-content{
+    border-bottom: #47b2e4 solid 3px;
+    border-top: #47b2e4 solid 3px;
+  }
+  .price-card-center{
+    border-top: #47b2e4 solid 3px;}
+    .sub-parent{
+      position: relative;
+    }
+    .sub-btn{
+      position: absolute;
+      right: 265px;
+    }
+    .ft-bottom{
+      background-color: var(--myprimary);
+    }
+    
+    .ft-para i{
+      padding-right: 2px;
+      color: #308cb7;
+      font-size: 10px;
+      line-height: 1;
+     font-weight: bolder;
+    }
+    .ft-para a:hover{
+      color: #47b2e4;
+    }
+
+    /* rateus.css */
+.volump-progress {
+  background-color: #f13a01; /* Green color or your preferred primary color */
+}
+
+.volump-text {
+  font-size: 1.2rem; /* Example font size */
+}
+
+.progress-bar {
+  margin-bottom: 1rem;
+}
+
+.progress-para {
+  font-weight: 500;
+}
+
+

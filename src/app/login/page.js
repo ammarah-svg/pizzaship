@@ -78,14 +78,14 @@ export default function LoginPage() {
 
         <div className="my-4 text-center text-gray-500">or login with provider</div>
 
-        <button
+        {/* <button
           type="button"
           onClick={() => signIn('google', { callbackUrl: '/' })}
           className="flex gap-4 justify-center w-full p-2 border rounded hover:bg-gray-100"
         >
-          <Image src={'/google.png'} alt="Google icon" width={24} height={24} />
+       <Image src="/google.png" width={24} height={24} alt="Google" />
           Login with Google
-        </button>
+        </button> */}
       </form>
     </section>
   );

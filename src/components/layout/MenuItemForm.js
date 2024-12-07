@@ -92,7 +92,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
             props={extraIngredientPrices}
             setProps={setExtraIngredientPrices}
           />
-          <button type="submit">Save</button>
+          <button className="w-[700px]" type="submit">Save</button>
         </div>
       </div>
     </form>

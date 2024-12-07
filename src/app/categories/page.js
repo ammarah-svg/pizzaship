@@ -4,7 +4,7 @@ import UserTabs from "@/components/layout/UserTabs";
 import {useEffect, useState} from "react";
 import {useProfile} from "@/components/UseProfile";
 import toast from "react-hot-toast";
-
+import Link from "next/link";
 export default function CategoriesPage() {
 
   const [categoryName, setCategoryName] = useState('');
@@ -13,22 +13,16 @@ export default function CategoriesPage() {
   const [editedCategory, setEditedCategory] = useState(null);
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch('/api/categories');
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const categories = await res.json();
-        setCategories(categories);
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      }
-    };
-
     fetchCategories();
   }, []);
 
+  function fetchCategories() {
+    fetch('/api/categories').then(res => {
+      res.json().then(categories => {
+        setCategories(categories);
+      });
+    });
+  }
 
   async function handleCategorySubmit(ev) {
     ev.preventDefault();
@@ -82,12 +76,11 @@ export default function CategoriesPage() {
 
   if (profileLoading) {
     return 'Loading user info...';
-    if (!profileData?.admin) {
-      return 'Not an admin';
-    }
-  
   }
 
+  if (!profileData.admin) {
+    return 'Not an admin';
+  }
 
   return (
     <section className="mt-8 max-w-2xl mx-auto">
@@ -146,6 +139,8 @@ export default function CategoriesPage() {
           </div>
         ))}
       </div>
+
+      <Link className="text-primary font-semi-bold underline  test-center mt-9" href='/menu'>Back to menu</Link>
     </section>
   );
 }

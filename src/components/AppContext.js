@@ -1,6 +1,6 @@
 'use client';
-import { SessionProvider } from "next-auth/react";
-import { createContext, useEffect, useState } from "react";
+import {SessionProvider} from "next-auth/react";
+import {createContext, useEffect, useState} from "react";
 import toast from "react-hot-toast";
 
 export const CartContext = createContext({});
@@ -18,18 +18,14 @@ export function cartProductPrice(cartProduct) {
   return price;
 }
 
-export function AppProvider({ children }) {
-  const [cartProducts, setCartProducts] = useState([]);
-  const [isMounted, setIsMounted] = useState(false);
+export function AppProvider({children}) {
+  const [cartProducts,setCartProducts] = useState([]);
 
-  // Ensure code only runs on the client side to avoid hydration errors
+  const ls = typeof window !== 'undefined' ? window.localStorage : null;
+
   useEffect(() => {
-    setIsMounted(true);
-    if (typeof window !== 'undefined') {
-      const storedCart = window.localStorage.getItem('cart');
-      if (storedCart) {
-        setCartProducts(JSON.parse(storedCart));
-      }
+    if (ls && ls.getItem('cart')) {
+      setCartProducts( JSON.parse( ls.getItem('cart') ) );
     }
   }, []);
 
@@ -46,16 +42,17 @@ export function AppProvider({ children }) {
     });
     toast.success('Product removed');
   }
+  
 
-  function saveCartProductsToLocalStorage(products) {
-    if (isMounted && typeof window !== 'undefined') {
-      window.localStorage.setItem('cart', JSON.stringify(products));
+  function saveCartProductsToLocalStorage(cartProducts) {
+    if (ls) {
+      ls.setItem('cart', JSON.stringify(cartProducts));
     }
   }
 
-  function addToCart(product, size = null, extras = []) {
+  function addToCart(product, size=null, extras=[]) {
     setCartProducts(prevProducts => {
-      const cartProduct = { ...product, size, extras };
+      const cartProduct = {...product, size, extras};
       const newProducts = [...prevProducts, cartProduct];
       saveCartProductsToLocalStorage(newProducts);
       return newProducts;
@@ -65,11 +62,8 @@ export function AppProvider({ children }) {
   return (
     <SessionProvider>
       <CartContext.Provider value={{
-        cartProducts,
-        setCartProducts,
-        addToCart,
-        removeCartProduct,
-        clearCart,
+        cartProducts, setCartProducts,
+        addToCart, removeCartProduct, clearCart,
       }}>
         {children}
       </CartContext.Provider>
